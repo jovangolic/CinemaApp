@@ -7,7 +7,7 @@ const ProjectionCard = ({ projection }) => {
         return null;
     }
 
-    const { id, movieResponse, typeResponse, hallResponse, dateTime, ticketPrice } = projection;
+    const { id, movieProjectionResponse, projectionAndProjectionTypeResponse, projectionHallResponse, dateTime, ticketPrice } = projection;
 
     return (
         <Col key={id} className="mb-4" xs={12}>
@@ -15,10 +15,10 @@ const ProjectionCard = ({ projection }) => {
                 <Card.Body className="d-flex align-items-center">
                     <div className="flex-shrink-0 mr-3">
                         <Link to={`/buy-ticket/${id}`}>
-                            {movieResponse && movieResponse.photo ? (
+                            {movieProjectionResponse && movieProjectionResponse.photo ? (
                                 <Card.Img
                                     variant="top"
-                                    src={`data:image/png;base64, ${movieResponse.photo}`}
+                                    src={`data:image/png;base64, ${movieProjectionResponse.photo}`}
                                     alt="Movie Photo"
                                     style={{ width: "150px", height: "auto" }}
                                 />
@@ -39,9 +39,9 @@ const ProjectionCard = ({ projection }) => {
                         </Link>
                     </div>
                     <div className="flex-grow-1 ml-3">
-                        <Card.Title className="hotel-color">{movieResponse ? movieResponse.name : "N/A"}</Card.Title>
-                        <Card.Title className="hotel-color">{typeResponse ? typeResponse.name : "N/A"}</Card.Title>
-                        <Card.Title className="hotel-color">{hallResponse ? hallResponse.name : "N/A"}</Card.Title>
+                        <Card.Title className="hotel-color">{movieProjectionResponse ? movieProjectionResponse.name : "N/A"}</Card.Title>
+                        <Card.Title className="hotel-color">{projectionAndProjectionTypeResponse ? projectionAndProjectionTypeResponse.name : "N/A"}</Card.Title>
+                        <Card.Title className="hotel-color">{projectionHallResponse ? projectionHallResponse.name : "N/A"}</Card.Title>
                         <Card.Title className="hotel-color">
                             {dateTime ? new Date(dateTime[0], dateTime[1] - 1, dateTime[2], dateTime[3], dateTime[4]).toLocaleString() : "N/A"}
                         </Card.Title>
