@@ -1,24 +1,42 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
+import { getProjectionTypes } from "../utils/AppFunction";
 
 const ProjectionTypeFilter = ({data, setFilteredData}) => {
 
     const[filter, setFilter] = useState("");
+	const [projectionTypes, setProjectionType] = useState([]);
+
+	useEffect(()=> {
+		const fetchProjectionTypes = async() => {
+			try{
+				const types = await getProjectionTypes();
+				setProjectionType(types);
+			}
+			catch(error){
+				console.error("Failed to fetch projection types: ", error);
+			}
+		};
+		fetchProjectionTypes();
+	},[]);
 
     const handleSelectChange = (e) => {
-        const selectedProjectionType = e.target.value;
-        setFilter(selectedProjectionType);
-
-        const filterProjectionTypes = data.filter((projection) => 
-        projection.projectionType.toLowerCase().includes(selectedProjectionType.toLowerCase()))
-        setFilteredData(filterProjectionTypes);
-    };
+		const selectedProjectionType = e.target.value;
+		setFilter(selectedProjectionType);
+	
+		const filterProjectionTypes = data.filter(
+		  (projection) =>
+			projection.projectionAndProjectionTypeResponse && 
+			projection.projectionAndProjectionTypeResponse.name.toLowerCase().includes(selectedProjectionType.toLowerCase())
+		);
+		setFilteredData(filterProjectionTypes);
+	  };
 
     const clearFilter = () => {
         setFilter("");
         setFilteredData(data);
     };
 
-    const projectionTypes = ["", ...new Set(data.map((projection) => projection.projectionType))];
+    
 
     return(
         <div className="input-group mb-3">
