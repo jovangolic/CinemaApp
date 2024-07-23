@@ -405,6 +405,15 @@ export async function getAllProjectionTypes(){
     }
 }
 
+export async function getAvailableSeatsByHallId(hallId) {
+    try {
+        const result = await api.get(`/seats/available/${hallId}`);
+        return result.data;
+    } catch (error) {
+        throw new Error(`Error fetching available seats: ${error.message}`);
+    }
+}
+
 export async function getSeats(){
     try{
         const response = await api.get("/seats/all-seats");
@@ -415,9 +424,9 @@ export async function getSeats(){
     }
 }
 
-export async function getAvailableSeats(hallId){
+export async function getAvailableSeats(projectionId){
     try{
-        const result = await api.get(`/seats/available/${hallId}`);
+        const result = await api.get(`/tickets/available-seats/${projectionId}`);
         return result.data;
     }
     catch(error){
