@@ -1,6 +1,7 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "/node_modules/bootstrap/dist/js/bootstrap.min.js"
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Home from "./components/home/Home";
 import NavBar from "./components/layout/NavBar";
@@ -21,10 +22,17 @@ import EditMovie from "./components/movies/EditMovie";
 import AddProjection from "./components/projections/AddProjection";
 import EditProjection from "./components/projections/EditProjection";
 import BoughtTicketsSuccess from "./components/bought-tickets/BoughtTicketsSuccess";
-import About from "./components/about/About";
+import About from "./components/info/About";
 import Checkout from "./components/bought-tickets/Checkout";
 import StripeProvider from "./components/payment/StripeProvider";
 import FindBoughtTickets from "./components/bought-tickets/FindBoughtTickets";
+import MovieComingSoonListing from "./components/coming-soon/MovieComingSoonListing";
+import AddMovieComingSoon from "./components/coming-soon/AddMovieComingSoon";
+import ExistingMoviesComingSoon from "./components/coming-soon/ExistingMoviesComingSoon";
+import EditMovieComingSoon from "./components/coming-soon/EditMovieComingSoon";
+import MovieComingSoonDetails from "./components/coming-soon/MovieComingSoonDetails";
+import Contact from "./components/info/Contact";
+
 
 function App() {
   return(
@@ -37,13 +45,17 @@ function App() {
                 <Route path="/" element={<Home />} />
                 
                 <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/edit-movie/:movieId" element={<EditMovie />} />
                 <Route path="/edit-projection/:projectionId" element={<EditProjection />} />
                 <Route path="/existing-movies" element={<ExistingMovies />} />
                 <Route path="/existing-projections" element={<ExistingProjections />} />
                 <Route path="/add-movie" element={<AddMovie />} />
                 <Route path="/add-projection" element={<AddProjection />} />
-                <Route path="buy-ticket/:movieId"
+                <Route path="/add-upcoming-movie" element={<AddMovieComingSoon />}/>
+                <Route path="/edit-upcoming-movie/:movieComingSoonId" element={<EditMovieComingSoon />} />
+                <Route path="/existing-upcoming-movies" element={<ExistingMoviesComingSoon />} />
+                <Route path="/buy-ticket/:movieId"
                 element={
                   <RequireAuth>
                     <Checkout />
@@ -51,8 +63,10 @@ function App() {
                 }
                 />
                 
+                <Route path="/go-to-details/:movieComingSoonId" element={<MovieComingSoonDetails />}/>
                 <Route path="/browse-all-movies" element={<MovieListing />} />
                 <Route path="/browse-all-projections" element={<ProjectionListing />} />
+                <Route path="/coming-soon" element={<MovieComingSoonListing />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/bought-ticket-success" element={<BoughtTicketsSuccess />} />
                 <Route path="/find-bought-tickets" element={<FindBoughtTickets />} />
