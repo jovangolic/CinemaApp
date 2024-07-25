@@ -5,6 +5,9 @@ CinemaApp is java full-stack web aplication that alows the users to reserved, ca
 
 ## Notes
 This application isn't finished yet. It's in working progress.
+Also, alter column description in movie_coming_soon table. Instead of column type String, set up to Text.
+e.g. ALTER TABLE cinema_db.movies_coming_soon modify column description TEXT;
+
 
 ## Features
 
