@@ -7,6 +7,23 @@ CinemaApp is java full-stack web aplication that alows the users to reserved, ca
 This application isn't finished yet. It's in working progress.
 Also, alter column description in movie_coming_soon table. Instead of column type String, set up to Text.
 e.g. ALTER TABLE cinema_db.movies_coming_soon modify column description TEXT;
+Before you run application, first, you need to create database. In MySQL Workbench, type this: 
+DROP SCHEMA IF EXISTS cinema_db;
+CREATE SCHEMA cinema_db DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE cinema_db;
+After application is run, also in MySQL Workbench add these lines of codes:
+insert into role(name) values("ROLE_ADMIN");
+insert into role(name) values("ROLE_USER");
+insert into projection_type(name) values("2D");
+insert into projection_type(name) values("3D");
+insert into projection_type(name) values("4D");
+insert into hall(name) values("hall-1");
+insert into seat(seat_number, hall_id, available) values(1,1,true);
+insert into seat(seat_number, hall_id, available) values(2,1,true);
+insert into seat(seat_number, hall_id, available) values(3,1,true);
+insert into seat(seat_number, hall_id, available) values(4,1,true);
+insert into seat(seat_number, hall_id, available) values(5,1,true);
+Also, you can add more halls and more seats. That's up to you.
 
 
 ## Features
